@@ -5,6 +5,8 @@
  * Full Stack Software Development
  * http://www.klow.greenriverdev.com/328/dating/
  */
+// start session
+session_start();
 
 // turn on error reporting
 ini_set('display_errors', 1);
@@ -22,6 +24,31 @@ $f3 = Base::instance();
 $f3->route('GET /', function() {
     $view = new Template();
     echo $view->render('views/home.html');
+});
+
+// personal information route
+$f3->route('GET /personal-information', function() {
+    $view = new Template();
+    echo $view -> render('views/personal-information.html');
+});
+
+
+// profile route
+$f3->route('POST /profile', function() {
+    var_dump($_POST);
+    var_dump($_SESSION);
+
+    $view = new Template();
+    echo $view -> render('views/personal-information.html');
+});
+
+// interests route
+$f3->route('POST /interests', function() {
+    var_dump($_POST);
+    var_dump($_SESSION);
+
+    $view = new Template();
+    echo $view -> render('views/personal-information.html');
 });
 
 // run f3

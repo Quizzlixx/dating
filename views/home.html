@@ -5,27 +5,25 @@ Full Stack Software Development
 http://www.klow.greenriverdev.com/328/dating/
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- favicon -->
-    <link rel="icon" href="images/favicon.gif" sizes="16x16 32x32" type="image/gif">
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- stylesheet -->
-    <link rel="stylesheet" href="styles/styles.css">
+    <include href="views/header.html">
+
     <!-- title -->
     <title>Fluffr &mdash; Welcome</title>
 </head>
 <body>
+
+<!-- Nav bar -->
+<include href="views/navbar.html">
+
 <div class="container-fluid"> <!-- container -->
+
     <div class="d-flex justify-content-between"><!-- content between -->
 
         <div class="mb-4"><!-- text and button -->
-            <h1 class="display-4 lead mb-4">Fluffr &mdash; the World's Most Successful Pet Dating Website</h1>
+            <h1 class="display-4 lead m-5">Fluffr &mdash; the World's Most Successful Pet Dating Website</h1>
 
             <p class="m-5">
                 At Fluffr, you'll meet other pet lovers who want to have fulfilling, meaningful relationships with
@@ -65,27 +63,22 @@ http://www.klow.greenriverdev.com/328/dating/
             </div><!-- /testimonials -->
 
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary">Create a Profile!</button>
-
+                <a href="personal-information" type="button" class="btn btn-primary">Create a Profile</a>
             </div>
 
         </div><!-- /text and button -->
 
-        <div>
-            <div class="m-0"><!-- splash image -->
-                <img src="images/splash-page-image.jpg" alt="Splash Page Image">
-            </div><!-- /splash image -->
-        </div>
+        <div class="m-0"><!-- splash image -->
+            <img id="splash-image" class="m-5" src="images/splash-page-image.jpg" alt="Splash Page Image" width="500px"
+                 height="750px">
+        </div><!-- /splash image -->
+
     </div><!-- /content between -->
 
 
 </div> <!-- /container -->
-<!-- jQuery -->
-<!-- slim jQuery does not support AJAX -->
-<script src="//code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<include href="views/footer.html">
+
 </body>
 </html>
