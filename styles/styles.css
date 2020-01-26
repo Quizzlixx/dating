@@ -1,3 +1,8 @@
+#privacy {
+    width: fit-content;
+    height: fit-content;
+    background-color: lightgray;
+}
 #splash-image {
     border-radius: 25px;
 }

@@ -1,0 +1,104 @@
+<!--
+Kerrie Low
+1.26.20
+Full Stack Software Development
+http://www.klow.greenriverdev.com/328/dating/personal-information
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- header -->
+    <include href="views/header.html">
+
+    <!-- title -->
+    <title>Fluffr &mdash; Personal Information</title>
+</head>
+<body>
+<!-- navbar -->
+<include href="views/navbar.html">
+
+<div class="container-fluid"> <!-- container fluid -->
+    <div class="card mt-3 m-3">
+        <!-- page title -->
+        <div class="m-3">
+            <h1>Personal Information</h1>
+            <hr>
+        </div>
+        <!-- /page title -->
+
+        <form method="POST" action="profile"> <!-- form -->
+
+            <div class="row"> <!-- row -->
+                <div class="col-9 m-3">
+
+                    <fieldset class="form-group"><!-- information -->
+
+                        <!-- first name -->
+                        <div class="form-row">
+                            <label for="fName" class="control-label" class="display-1"><strong>First Name</strong></label>
+                            <input type="text" id="fName" name="fName" class="form-control">
+                        </div>
+                        <br>
+                        <!-- /first name -->
+
+                        <!-- last name -->
+                        <div class="form-row">
+                            <label for="lName" class="control-label"><strong>Last Name</strong></label>
+                            <input type="text" id="lName" name="lName" class="form-control">
+                        </div>
+                        <br>
+                        <!-- /last name -->
+
+                        <!-- age -->
+                        <div class="form-row">
+                            <label for="age" class="control-label"><strong>Age</strong></label>
+                            <input type="text" id="age" name="age" class="form-control">
+                        </div>
+                        <br>
+                        <!-- /age -->
+
+                        <!-- gender -->
+                        <div class="form-row">
+                            <label for="gender"><strong>Gender</strong>
+                                <div id="gender" name="gender" class="mt-2">
+                                    <label for="male">
+                                        <input type="radio" id="male" name="gender" value="Male"> Male &emsp;
+                                    </label>
+                                    <label for="female">
+                                        <input type="radio" id="female" name="gender" value="Female"> Female
+                                    </label>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- /gender -->
+
+                        <!-- phone number -->
+                        <div class="form-row">
+                            <label for="phone" class="control-label"><strong>Phone number</strong></label>
+                            <input type="tel" id="phone" name="phone" class="form-control">
+                        </div>
+                        <!-- /phone number -->
+                    </fieldset><!-- /information -->
+                </div>
+
+                <div class="col m-5">
+                    <div id="privacy" class="card"><!-- privacy notice -->
+                        <p class="card-body"><strong>Note:</strong> All information entered is protected by our <a href="privacy-policy">privacy policy</a>.
+                            Profile information can only be viewed by others with your permission</p>
+                    </div><!-- /privacy notice -->
+                </div>
+            </div><!-- /row -->
+
+            <!-- button -->
+            <button type="submit" id="next" class="btn btn-primary d-flex float-right m-3">Next</button>
+            <!-- /button -->
+
+        </form> <!-- /form -->
+    </div>
+</div> <!-- /container fluid -->
+
+<!-- footer -->
+<include href="views/footer.html">
+</body>
+</html>
