@@ -1,0 +1,42 @@
+<!--
+Kerrie Low
+1.26.20
+Full Stack Software Development
+http://www.klow.greenriverdev.com/328/dating/summary
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- header -->
+    <include href="views/header.html">
+
+        <!-- title -->
+        <title>Fluffr &mdash; Summary</title>
+        </head>
+<body>
+
+<!-- navbar -->
+<include href="views/navbar.html">
+
+<div class="container-fluid"> <!-- container fluid -->
+    <div class="card m-3"><!-- card -->
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name: {{ @SESSION.fName }} {{ @SESSION.lName }}</li>
+            <li class="list-group-item">Gender: {{ @SESSION.gender }}</li>
+            <li class="list-group-item">Age: {{ @SESSION.age }}</li>
+            <li class="list-group-item">Phone: {{ @SESSION.phone }}</li>
+            <li class="list-group-item">Email: {{ @SESSION.email }}</li>
+            <li class="list-group-item">State: {{ @SESSION.state }}</li>
+            <li class="list-group-item">Seeking: {{ @SESSION.seeking }}</li>
+            <li class="list-group-item">Interests: {{ @SESSION.indoor }} {{  @SESSION.outdoor }}</li>
+        </ul>
+
+    </div><!-- /card -->
+</div> <!-- /container fluid -->
+
+<!-- footer -->
+<include href="views/footer.html">
+</body>
+</html>

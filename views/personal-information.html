@@ -19,18 +19,17 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
 <include href="views/navbar.html">
 
 <div class="container-fluid"> <!-- container fluid -->
-    <div class="card mt-3 m-3">
-        <!-- page title -->
-        <div class="m-3">
+    <div class="card m-3"> <!-- card -->
+
+        <div class="m-3"><!-- page title -->
             <h1>Personal Information</h1>
             <hr>
-        </div>
-        <!-- /page title -->
+        </div><!-- /page title -->
 
         <form method="POST" action="profile"> <!-- form -->
 
             <div class="row"> <!-- row -->
-                <div class="col-9 m-3">
+                <div class="col-9 m-3"><!-- col -->
 
                     <fieldset class="form-group"><!-- information -->
 
@@ -61,7 +60,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- gender -->
                         <div class="form-row">
                             <label for="gender"><strong>Gender</strong>
-                                <div id="gender" name="gender" class="mt-2">
+                                <div id="gender" name="gender">
                                     <label for="male">
                                         <input type="radio" id="male" name="gender" value="Male"> Male &emsp;
                                     </label>
@@ -80,22 +79,26 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         </div>
                         <!-- /phone number -->
                     </fieldset><!-- /information -->
-                </div>
+                </div><!-- /col -->
 
-                <div class="col m-5">
+                <div class="col m-5"><!-- col -->
                     <div id="privacy" class="card"><!-- privacy notice -->
+
                         <p class="card-body"><strong>Note:</strong> All information entered is protected by our <a href="privacy-policy">privacy policy</a>.
                             Profile information can only be viewed by others with your permission</p>
+
                     </div><!-- /privacy notice -->
-                </div>
+                </div><!-- /col -->
             </div><!-- /row -->
 
             <!-- button -->
-            <button type="submit" id="next" class="btn btn-primary d-flex float-right m-3">Next</button>
+            <div class="d-flex justify-content-end m-3">
+                <button type="submit" id="next" class="btn btn-primary ">Next</button>
+            </div>
             <!-- /button -->
 
         </form> <!-- /form -->
-    </div>
+    </div><!-- /card -->
 </div> <!-- /container fluid -->
 
 <!-- footer -->
