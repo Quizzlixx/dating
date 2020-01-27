@@ -15,6 +15,9 @@ error_reporting(E_ALL);
 // require the autoload file
 require_once('vendor/autoload.php');
 
+// include model
+//include('model/validate.php');
+
 // instantiate F3
 $f3 = Base::instance();
 

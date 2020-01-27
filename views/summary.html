@@ -38,17 +38,24 @@ http://www.klow.greenriverdev.com/328/dating/summary
                 </div><!-- /inner card -->
             </div><!-- /information -->
 
-            <div class="row m-5"><!-- picture -->
-                <div class="col">
-                    <div class="d-flex justify-content-center">
-                        <img src="images/icon_missing_full.png" alt="No Profile Picture">
-                    </div>
+            <div class="col"><!-- picture and bio -->
+
+                <div class="d-flex justify-content-center"><!-- picture -->
+                    <img src="images/icon_missing_full.png" alt="No Profile Picture">
+                </div><!-- /picture -->
+
+                <div><!-- bio -->
                     <p class="lead">Biography</p>
                     <p>{{ @SESSION.biography }}</p>
-                </div>
-            </div><!-- /picture -->
+                </div><!-- /bio -->
 
+            </div><!-- /picture and bio -->
         </div><!-- /row -->
+
+        <div class="d-flex justify-content-center m-5"><!-- button -->
+            <button type="button" id="contact-me" class="btn btn-primary">Contact Me</button>
+        </div><!-- /button -->
+
     </div><!-- /card -->
 </div> <!-- /container fluid -->
 
