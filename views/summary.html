@@ -21,18 +21,34 @@ http://www.klow.greenriverdev.com/328/dating/summary
 
 <div class="container-fluid"> <!-- container fluid -->
     <div class="card m-3"><!-- card -->
+        <div class="row"><!-- row -->
+            <div class="col"><!-- information -->
+                <div class="card m-5"><!-- inner card -->
+                    <ul class="list-group list-group-flush"><!-- list of session variables -->
+                        <li class="list-group-item">Name: {{ @SESSION.fName }} {{ @SESSION.lName }}</li>
+                        <li class="list-group-item">Gender: {{ @SESSION.gender }}</li>
+                        <li class="list-group-item">Age: {{ @SESSION.age }}</li>
+                        <li class="list-group-item">Phone: {{ @SESSION.phone }}</li>
+                        <li class="list-group-item">Email: {{ @SESSION.email }}</li>
+                        <li class="list-group-item">State: {{ @SESSION.state }}</li>
+                        <li class="list-group-item">Pet: {{ @SESSION.pName }}</li>
+                        <li class="list-group-item">Seeking: {{ @SESSION.seeking }}</li>
+                        <li class="list-group-item">Interests: {{ @SESSION.activity }}</li>
+                    </ul><!-- /list -->
+                </div><!-- /inner card -->
+            </div><!-- /information -->
 
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Name: {{ @SESSION.fName }} {{ @SESSION.lName }}</li>
-            <li class="list-group-item">Gender: {{ @SESSION.gender }}</li>
-            <li class="list-group-item">Age: {{ @SESSION.age }}</li>
-            <li class="list-group-item">Phone: {{ @SESSION.phone }}</li>
-            <li class="list-group-item">Email: {{ @SESSION.email }}</li>
-            <li class="list-group-item">State: {{ @SESSION.state }}</li>
-            <li class="list-group-item">Seeking: {{ @SESSION.seeking }}</li>
-            <li class="list-group-item">Interests: {{ @SESSION.indoor }} {{  @SESSION.outdoor }}</li>
-        </ul>
+            <div class="row m-5"><!-- picture -->
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <img src="images/icon_missing_full.png" alt="No Profile Picture">
+                    </div>
+                    <p class="lead">Biography</p>
+                    <p>{{ @SESSION.biography }}</p>
+                </div>
+            </div><!-- /picture -->
 
+        </div><!-- /row -->
     </div><!-- /card -->
 </div> <!-- /container fluid -->
 

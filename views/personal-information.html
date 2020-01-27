@@ -35,7 +35,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
 
                         <!-- first name -->
                         <div class="form-row">
-                            <label for="fName" class="control-label" class="display-1"><strong>First Name</strong></label>
+                            <label for="fName" class="control-label"><strong>First Name</strong></label>
                             <input type="text" id="fName" name="fName" class="form-control">
                         </div>
                         <br>
@@ -58,16 +58,13 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- /age -->
 
                         <!-- gender -->
+                        <p><strong>Gender</strong></p>
                         <div class="form-row">
-                            <label for="gender"><strong>Gender</strong>
-                                <div id="gender" name="gender">
-                                    <label for="male">
-                                        <input type="radio" id="male" name="gender" value="Male"> Male &emsp;
-                                    </label>
-                                    <label for="female">
-                                        <input type="radio" id="female" name="gender" value="Female"> Female
-                                    </label>
-                                </div>
+                            <label for="male" id="gender">
+                                <input type="radio" id="male" name="gender" value="Male"> Male &emsp;
+                            </label>
+                            <label for="female">
+                                <input type="radio" id="female" name="gender" value="Female"> Female
                             </label>
                         </div>
                         <!-- /gender -->
@@ -75,7 +72,8 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- phone number -->
                         <div class="form-row">
                             <label for="phone" class="control-label"><strong>Phone number</strong></label>
-                            <input type="tel" id="phone" name="phone" class="form-control">
+                            <input type="tel" id="phone" name="phone" pattern="{0-9}{3}-{0-9}{3}-{0-9}{4}"
+                                   class="form-control">
                         </div>
                         <!-- /phone number -->
                     </fieldset><!-- /information -->

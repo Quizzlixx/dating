@@ -32,7 +32,7 @@ $f3 -> route('GET /personal-information', function() {
 
 // profile route
 $f3 -> route('POST /profile', function() {
-    var_dump($_POST);
+//    var_dump($_POST);
 //    var_dump($_SESSION);
 
     $_SESSION['fName'] = $_POST['fName'];
@@ -47,7 +47,7 @@ $f3 -> route('POST /profile', function() {
 
 // interests route
 $f3 -> route('POST /interests', function() {
-    var_dump($_POST);
+//    var_dump($_POST);
 //    var_dump($_SESSION);
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['state'] = $_POST['state'];
@@ -65,10 +65,21 @@ $f3 -> route('POST /interests', function() {
 
 // summary route
 $f3 -> route('POST /summary', function() {
-    var_dump($_POST);
+//    var_dump($_POST);
 //    var_dump($_SESSION);
     $_SESSION['indoor[]'] = $_POST['indoor[]'];
     $_SESSION['outdoor[]'] = $_POST['outdoor[]'];
+
+    $activity = "";
+    foreach ($_POST as $indoor) {
+        if (is_array($indoor)) {
+            foreach ($indoor as $item) {
+//                echo $item;
+                $activity .= $item . " ";
+            }
+        }
+    }
+    $_SESSION['activity'] = $activity;
 
     $view = new Template();
     echo $view -> render('views/summary.html');
