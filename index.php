@@ -60,7 +60,7 @@ $f3->route('GET /', function () {
 
 // personal information route
 $f3->route('GET|POST /personal-information', function ($f3) {
-    var_dump($_POST);
+//    var_dump($_POST);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -99,7 +99,7 @@ $f3->route('GET|POST /personal-information', function ($f3) {
 
 // profile route
 $f3->route('GET|POST /profile', function ($f3) {
-    var_dump($_POST);
+//    var_dump($_POST);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -147,7 +147,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
 // interests route
 $f3->route('GET|POST /interests', function ($f3) {
-    var_dump($_POST);
+//    var_dump($_POST);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -176,7 +176,7 @@ $f3->route('GET|POST /interests', function ($f3) {
 
 // summary route
 $f3->route('GET|POST /summary', function () {
-    var_dump($_POST);
+//    var_dump($_POST);
 
     $view = new Template();
     echo $view->render('views/summary.html');
