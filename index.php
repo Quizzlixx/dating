@@ -20,14 +20,31 @@ require_once('model/validate.php');
 $f3 = Base::instance();
 
 // arrays
+$f3->set('gender', array('male', 'female'));
+
+$f3->set('seeking', array('cats', 'dogs'));
+
 $f3->set('indoor', array('puzzles' => 'Puzzles', 'mazes' => 'Mazes', 'training' => 'Training',
     'baking' => 'Pet-friendly Baking Class', 'cooking' => 'Pet-friendly Cooking Class', 'dining' => 'Pet-friendly Dining',
     'play' => 'Play Dates'));
+
 $f3->set('outdoor', array('hiking' => 'Hiking', 'biking' => 'Biking', 'swimming' => 'Swimming', 'walking' => 'Walking',
     'fetch' => 'Fetch', 'running' => 'Running', 'agility' => 'Agility', 'herding' => 'Herding', 'parks' => 'Off-Leash Parks',
     'obedience' => 'Obedience'));
+
 $f3->set('sizes', array('teacup' => 'Teacup (4 pounds or less)', 'toy' => 'Toy (5 - 12 pounds)', 'small' => 'Small (12 - 22 pounds)',
     'medium' => 'Medium (24 - 57 pounds)', 'large' => 'Large (59 - 99 pounds)', 'giant' => 'Giant (100 pounds or more)'));
+
+// https://gist.github.com/maxrice/2776900
+$f3->set('states', array('AL'=>'Alabama', 'AK'=>'Alaska', 'AZ'=>'Arizona', 'AR'=>'Arkansas', 'CA'=>'California', 'CO'=>'Colorado',
+    'CT'=>'Connecticut', 'DE'=>'Delaware', 'DC'=>'District of Columbia', 'FL'=>'Florida', 'GA'=>'Georgia', 'HI'=>'Hawaii',
+    'ID'=>'Idaho', 'IL'=>'Illinois', 'IN'=>'Indiana', 'IA'=>'Iowa', 'KS'=>'Kansas', 'KY'=>'Kentucky', 'LA'=>'Louisiana',
+    'ME'=>'Maine', 'MD'=>'Maryland', 'MA'=>'Massachusetts', 'MI'=>'Michigan', 'MN'=>'Minnesota', 'MS'=>'Mississippi',
+    'MO'=>'Missouri', 'MT'=>'Montana', 'NE'=>'Nebraska', 'NV'=>'Nevada', 'NH'=>'New Hampshire', 'NJ'=>'New Jersey',
+    'NM'=>'New Mexico', 'NY'=>'New York', 'NC'=>'North Carolina', 'ND'=>'North Dakota', 'OH'=>'Ohio', 'OK'=>'Oklahoma',
+    'OR'=>'Oregon', 'PA'=>'Pennsylvania', 'RI'=>'Rhode Island', 'SC'=>'South Carolina', 'SD'=>'South Dakota',
+    'TN'=>'Tennessee', 'TX'=>'Texas', 'UT'=>'Utah', 'VT'=>'Vermont', 'VA'=>'Virginia', 'WA'=>'Washington',
+    'WV'=>'West Virginia', 'WI'=>'Wisconsin', 'WY'=>'Wyoming'));
 
 // define a default route
 $f3->route('GET /', function () {
@@ -44,12 +61,14 @@ $f3->route('GET|POST /personal-information', function ($f3) {
         $fName = $_POST['fName'];
         $lName = $_POST['lName'];
         $age = $_POST['age'];
+        $gender = $_POST['gender'];
         $phone = $_POST['phone'];
 
         // put data in hive
         $f3->set('fName', $fName);
         $f3->set('lName', $lName);
         $f3->set('age', $age);
+        $f3->set('gender', $gender);
         $f3->set('phone', $phone);
 
         // if form is valid, reroute
@@ -59,6 +78,7 @@ $f3->route('GET|POST /personal-information', function ($f3) {
             $_SESSION['fName'] = $fName;
             $_SESSION['lName'] = $lName;
             $_SESSION['age'] = $age;
+            $_SESSION['gender'] = $gender;
             $_SESSION['phone'] = $phone;
 
             // reroute
@@ -77,14 +97,35 @@ $f3->route('GET|POST /profile', function ($f3) {
 
         // get variables from post array
         $email = $_POST['email'];
+        $state = $_POST['state'];
+        $seeking = $_POST['seeking'];
+        $size = $_POST['size'];
+        $vaccination = $_POST['vaccination'];
+        $pName = $_POST['pName'];
+        $species = $_POST['species'];
+        $biography = $_POST['biography'];
 
         // add data to the hive
         $f3->set('email', $email);
+        $f3->set('state', $state);
+        $f3->set('seeking', $seeking);
+        $f3->set('size', $size);
+        $f3->set('vaccination', $vaccination);
+        $f3->set('pName', $pName);
+        $f3->set('species', $species);
+        $f3->set('biography', $biography);
 
-       if(validProfile()) {
+        if(validProfile()) {
 
            //write data to session
            $_SESSION['email'] = $email;
+           $_SESSION['state'] = $state;
+           $_SESSION['seeking'] = $seeking;
+           $_SESSION['size'] = $size;
+           $_SESSION['vaccination'] = $vaccination;
+           $_SESSION['pName'] = $pName;
+           $_SESSION['species'] = $species;
+           $_SESSION['biography'] = $biography;
 
            // reroute
            $f3->reroute('/interests');

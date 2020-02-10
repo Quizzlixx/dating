@@ -70,12 +70,11 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- gender -->
                         <p><strong>Gender</strong></p>
                         <div class="form-row">
-                            <label for="male" id="gender">
-                                <input type="radio" id="male" name="gender" value="Male"> Male &emsp;
-                            </label>
-                            <label for="female">
-                                <input type="radio" id="female" name="gender" value="Female"> Female
-                            </label>
+                            <repeat group="{{ @gender }}" value="{{ @value }}">
+                                <label for="{{ @value }}">
+                                    <input type="radio" id="{{ @value }}" value="{{ @value }}"> {{ ucfirst(@value) }}
+                                </label>&emsp;
+                            </repeat>
                         </div>
                         <!-- /gender -->
 
