@@ -5,6 +5,7 @@
  * Full Stack Software Development
  * http://www.klow.greenriverdev.com/328/dating/
  */
+
 // start session
 session_start();
 
@@ -19,16 +20,19 @@ require_once('model/validate.php');
 // instantiate F3
 $f3 = Base::instance();
 
+// f3 error reporting on
+$f3->set('DEBUG',3);
+
 // arrays
-$f3->set('gender', array('male', 'female'));
+$f3->set('genders', array('male', 'female'));
 
-$f3->set('seeking', array('cats', 'dogs'));
+$f3->set('seekings', array('cats', 'dogs'));
 
-$f3->set('indoor', array('puzzles' => 'Puzzles', 'mazes' => 'Mazes', 'training' => 'Training',
+$f3->set('indoors', array('puzzles' => 'Puzzles', 'mazes' => 'Mazes', 'training' => 'Training',
     'baking' => 'Pet-friendly Baking Class', 'cooking' => 'Pet-friendly Cooking Class', 'dining' => 'Pet-friendly Dining',
     'play' => 'Play Dates'));
 
-$f3->set('outdoor', array('hiking' => 'Hiking', 'biking' => 'Biking', 'swimming' => 'Swimming', 'walking' => 'Walking',
+$f3->set('outdoors', array('hiking' => 'Hiking', 'biking' => 'Biking', 'swimming' => 'Swimming', 'walking' => 'Walking',
     'fetch' => 'Fetch', 'running' => 'Running', 'agility' => 'Agility', 'herding' => 'Herding', 'parks' => 'Off-Leash Parks',
     'obedience' => 'Obedience'));
 
@@ -54,6 +58,7 @@ $f3->route('GET /', function () {
 
 // personal information route
 $f3->route('GET|POST /personal-information', function ($f3) {
+    var_dump($_POST);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -92,8 +97,10 @@ $f3->route('GET|POST /personal-information', function ($f3) {
 
 // profile route
 $f3->route('GET|POST /profile', function ($f3) {
+    var_dump($_POST);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 
         // get variables from post array
         $email = $_POST['email'];
@@ -107,7 +114,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
         // add data to the hive
         $f3->set('email', $email);
-        $f3->set('state', $state);
+        $f3->set('selectedState', $state);
         $f3->set('seeking', $seeking);
         $f3->set('size', $size);
         $f3->set('vaccination', $vaccination);
@@ -119,8 +126,8 @@ $f3->route('GET|POST /profile', function ($f3) {
 
            //write data to session
            $_SESSION['email'] = $email;
-           $_SESSION['state'] = $state;
-           $_SESSION['seeking'] = $seeking;
+           $_SESSION['selectedState'] = $state;
+           $_SESSION['seeking'] = $selectedSeeking;
            $_SESSION['size'] = $size;
            $_SESSION['vaccination'] = $vaccination;
            $_SESSION['pName'] = $pName;
@@ -138,6 +145,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
 // interests route
 $f3->route('GET|POST /interests', function ($f3) {
+    var_dump($_POST);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -166,6 +174,7 @@ $f3->route('GET|POST /interests', function ($f3) {
 
 // summary route
 $f3->route('GET|POST /summary', function () {
+    var_dump($_POST);
 
     $view = new Template();
     echo $view->render('views/summary.html');
