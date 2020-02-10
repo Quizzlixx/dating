@@ -12,81 +12,123 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// require the autoload file
+// requires
 require_once('vendor/autoload.php');
-
-// include model
-//include('model/validate.php');
+require_once('model/validate.php');
 
 // instantiate F3
 $f3 = Base::instance();
 
+// arrays
+$f3->set('indoor', array('puzzles' => 'Puzzles', 'mazes' => 'Mazes', 'training' => 'Training',
+    'baking' => 'Pet-friendly Baking Class', 'cooking' => 'Pet-friendly Cooking Class', 'dining' => 'Pet-friendly Dining',
+    'play' => 'Play Dates'));
+$f3->set('outdoor', array('hiking' => 'Hiking', 'biking' => 'Biking', 'swimming' => 'Swimming', 'walking' => 'Walking',
+    'fetch' => 'Fetch', 'running' => 'Running', 'agility' => 'Agility', 'herding' => 'Herding', 'parks' => 'Off-Leash Parks',
+    'obedience' => 'Obedience'));
+$f3->set('sizes', array('teacup' => 'Teacup (4 pounds or less)', 'toy' => 'Toy (5 - 12 pounds)', 'small' => 'Small (12 - 22 pounds)',
+    'medium' => 'Medium (24 - 57 pounds)', 'large' => 'Large (59 - 99 pounds)', 'giant' => 'Giant (100 pounds or more)'));
+
 // define a default route
-$f3 -> route('GET /', function() {
+$f3->route('GET /', function () {
     $view = new Template();
     echo $view->render('views/home.html');
 });
 
 // personal information route
-$f3 -> route('GET /personal-information', function() {
+$f3->route('GET|POST /personal-information', function ($f3) {
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        // get data from form
+        $fName = $_POST['fName'];
+        $lName = $_POST['lName'];
+        $age = $_POST['age'];
+        $phone = $_POST['phone'];
+
+        // put data in hive
+        $f3->set('fName', $fName);
+        $f3->set('lName', $lName);
+        $f3->set('age', $age);
+        $f3->set('phone', $phone);
+
+        // if form is valid, reroute
+        if(validPersonalInformation()) {
+
+            // write data to session
+            $_SESSION['fName'] = $fName;
+            $_SESSION['lName'] = $lName;
+            $_SESSION['age'] = $age;
+            $_SESSION['phone'] = $phone;
+
+            // reroute
+            $f3->reroute('/profile');
+        }
+    }
+
     $view = new Template();
-    echo $view -> render('views/personal-information.html');
+    echo $view->render('views/personal-information.html');
 });
 
 // profile route
-$f3 -> route('POST /profile', function() {
-//    var_dump($_POST);
-//    var_dump($_SESSION);
+$f3->route('GET|POST /profile', function ($f3) {
 
-    $_SESSION['fName'] = $_POST['fName'];
-    $_SESSION['lName'] = $_POST['lName'];
-    $_SESSION['age'] = $_POST['age'];
-    $_SESSION['gender'] = $_POST['gender'];
-    $_SESSION['phone'] = $_POST['phone'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        // get variables from post array
+        $email = $_POST['email'];
+
+        // add data to the hive
+        $f3->set('email', $email);
+
+       if(validProfile()) {
+
+           //write data to session
+           $_SESSION['email'] = $email;
+
+           // reroute
+           $f3->reroute('/interests');
+       }
+    }
 
     $view = new Template();
-    echo $view -> render('views/profile.html');
+    echo $view->render('views/profile.html');
 });
 
 // interests route
-$f3 -> route('POST /interests', function() {
-//    var_dump($_POST);
-//    var_dump($_SESSION);
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['state'] = $_POST['state'];
-    $_SESSION['seeking'] = $_POST['seeking'];
-    $_SESSION['size'] = $_POST['size'];
-    $_SESSION['vaccination'] = $_POST['vaccination'];
-    $_SESSION['pName'] = $_POST['pName'];
-    $_SESSION['species'] = $_POST['species'];
-    $_SESSION['biography'] = $_POST['biography'];
+$f3->route('GET|POST /interests', function ($f3) {
 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $selectedIndoor = !empty($_POST['indoor']) ? $_POST['indoor'] : array();
+        $selectedOutdoor = !empty($_POST['outdoor']) ? $_POST['outdoor'] : array();
+
+        // add data to the hive
+        $f3->set('selectedIndoor', $selectedIndoor);
+        $f3->set('selectedOutdoor', $selectedOutdoor);
+
+        // validate arrays
+        if(validInterests()) {
+            // write data to session
+            $_SESSION['indoor'] = $selectedIndoor;
+            $_SESSION['outdoor'] = $selectedOutdoor;
+
+            // reroute to summary
+            $f3->reroute('/summary');
+        }
+
+    }
 
     $view = new Template();
-    echo $view -> render('views/interests.html');
+    echo $view->render('views/interests.html');
 });
 
 // summary route
-$f3 -> route('POST /summary', function() {
-//    var_dump($_POST);
-//    var_dump($_SESSION);
-    $_SESSION['indoor[]'] = $_POST['indoor[]'];
-    $_SESSION['outdoor[]'] = $_POST['outdoor[]'];
-
-    $activity = "";
-    foreach ($_POST as $indoor) {
-        if (is_array($indoor)) {
-            foreach ($indoor as $item) {
-//                echo $item;
-                $activity .= $item . " ";
-            }
-        }
-    }
-    $_SESSION['activity'] = $activity;
+$f3->route('GET|POST /summary', function () {
 
     $view = new Template();
-    echo $view -> render('views/summary.html');
+    echo $view->render('views/summary.html');
 });
 
 // run f3
-$f3 -> run();
+$f3->run();

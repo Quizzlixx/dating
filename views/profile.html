@@ -28,20 +28,24 @@ http://www.klow.greenriverdev.com/328/dating/profile
         </div>
         <!-- /page title -->
 
-        <form method="POST" action="interests"> <!-- form -->
+        <form method="POST" action="#"> <!-- form -->
             <fieldset class="form-group"><!-- fieldset -->
                 <div class="row m-3"><!-- row -->
                     <div class="col"><!-- col1 -->
 
                         <!-- email -->
                         <label for="email" class="control-label"><strong>Email</strong></label>
-                        <input type="email" id="email" name="email" class="form-control">
+                        <input type="text" id="email" name="email" value="{{ @email }}" class="form-control">
+                        <check if="{{ isset(@errors['email']) }}">
+                            <label class="text-danger">{{ @errors['email'] }}</label>
+                        </check>
                         <br>
                         <!-- /email -->
 
-                        <!-- state -->
+                        <!-- state (from online source)-->
                         <label for="state" class="control-label"><strong>State</strong>
                             <select id="state" name="state" class="form-control">
+                                <option value="none">-- Select a State --</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -89,7 +93,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
                                 <option value="UT">Utah</option>
                                 <option value="VT">Vermont</option>
                                 <option value="VA">Virginia</option>
-                                <option value="WA" selected>Washington</option>
+                                <option value="WA">Washington</option>
                                 <option value="WV">West Virginia</option>
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
@@ -117,12 +121,9 @@ http://www.klow.greenriverdev.com/328/dating/profile
                         <label for="size" class="control-label"><strong>Size</strong>
                             <select id="size" name="size" class="form-control">
                                 <option value="none">-- Select a Size --</option>
-                                <option value="teacup">Teacup (4 pounds or less)</option>
-                                <option value="toy">Toy (5 - 12 pounds)</option>
-                                <option value="small">Small (12 - 22 pounds)</option>
-                                <option value="medium">Medium (24 - 57 pounds)</option>
-                                <option value="large">Large (59 - 99 pounds)</option>
-                                <option value="giant">Giant (100 pounds or more)</option>
+                                <repeat group="{{ @sizes }}" key="{{ @key }}" value="{{ @value }}">
+                                    <option value="{{ @key }}">{{ @value }}</option>
+                                </repeat>
                             </select>
                         </label>
                         <br>

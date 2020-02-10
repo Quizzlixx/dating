@@ -33,7 +33,8 @@ http://www.klow.greenriverdev.com/328/dating/summary
                         <li class="list-group-item">State: {{ @SESSION.state }}</li>
                         <li class="list-group-item">Pet: {{ @SESSION.pName }}</li>
                         <li class="list-group-item">Seeking: {{ @SESSION.seeking }}</li>
-                        <li class="list-group-item">Interests: {{ @SESSION.activity }}</li>
+                        <li class="list-group-item">Interests: {{ implode(", ", @SESSION.indoor) }}
+                            {{ implode(", ", @SESSION.outdoor) }}</li>
                     </ul><!-- /list -->
                 </div><!-- /inner card -->
             </div><!-- /information -->

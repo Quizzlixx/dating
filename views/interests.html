@@ -11,94 +11,79 @@ http://www.klow.greenriverdev.com/328/dating/interests
     <!-- header -->
     <include href="views/header.html">
 
-    <!-- title -->
-    <title>Fluffr &mdash; Interests</title>
-</head>
+        <!-- title -->
+        <title>Fluffr &mdash; Interests</title>
+        </head>
 <body>
 
 <!-- navbar -->
 <include href="views/navbar.html">
 
-<div class="container-fluid"> <!-- container fluid -->
-    <div class="card m-3"><!-- card -->
+    <div class="container-fluid"> <!-- container fluid -->
+        <div class="card m-3"><!-- card -->
 
-        <div class="m-3"><!-- page title -->
-            <h1>Interests</h1>
-            <hr>
-        </div><!-- /page title -->
+            <div class="m-3"><!-- page title -->
+                <h1>Interests</h1>
+                <hr>
+            </div><!-- /page title -->
 
-        <form method="POST" action="summary"><!-- form -->
+            <form method="POST" action="#"><!-- form -->
 
-            <div class="m-3"><!-- indoor interests -->
-                <p><strong>Indoor</strong></p>
-                <div class="d-flex justify-content-between"><!-- justify content between -->
-                    <label for="puzzles" class="control-label">
-                        <input type="checkbox" id="puzzles" value="puzzles" name="indoor[]"> Puzzles
-                    </label>
-                    <label for="mazes" class="control-label">
-                        <input type="checkbox" id="mazes" value="mazes" name="indoor[]"> Mazes
-                    </label>
-                    <label for="training" class="control-label">
-                        <input type="checkbox" id="training" value="training" name="indoor[]"> Training
-                    </label>
-                    <label for="baking" class="control-label">
-                        <input type="checkbox" id="baking" value="baking" name="indoor[]"> Pet-Friendly Baking Class
-                    </label>
-                    <label for="cooking" class="control-label">
-                        <input type="checkbox" id="cooking" value="cooking" name="indoor[]"> Pet-Friendly Cooking Class
-                    </label>
-                    <label for="dining" class="control-label">
-                        <input type="checkbox" id="dining" value="dining" name="indoor[]"> Pet-Friendly Dining
-                    </label>
-                    <label for="play" class="control-label">
-                        <input type="checkbox" id="play" value="play" name="indoor[]"> Play Dates
-                    </label>
-                </div><!-- /justify content between -->
-            </div><!-- /indoor interests -->
+                <div class="m-3"><!-- indoor interests -->
+                    <p><strong>Indoor</strong></p>
+                    <div class="d-flex justify-content-between"><!-- justify content between -->
 
-            <div class="m-3"><!-- outdoor interests -->
-                <p><strong>Outdoor</strong></p>
-                <div class="d-flex justify-content-between"><!-- justify content between -->
-                    <label for="hiking" class="control-label">
-                        <input type="checkbox" id="hiking" value="hiking" name="outdoor[]"> Hiking
-                    </label>
-                    <label for="biking" class="control-label">
-                        <input type="checkbox" id="biking" value="biking" name="outdoor[]"> Biking
-                    </label>
-                    <label for="swimming" class="control-label">
-                        <input type="checkbox" id="swimming" value="swimming" name="outdoor[]"> Swimming
-                    </label>
-                    <label for="walking" class="control-label">
-                        <input type="checkbox" id="walking" value="walking" name="outdoor[]"> Walking
-                    </label>
-                    <label for="fetch" class="control-label">
-                        <input type="checkbox" id="fetch" value="fetch" name="outdoor[]"> Fetch
-                    </label>
-                    <label for="running" class="control-label">
-                        <input type="checkbox" id="running" value="running" name="outdoor[]"> Running
-                    </label>
-                    <label for="agility" class="control-label">
-                        <input type="checkbox" id="agility" value="agility" name="outdoor[]"> Agility
-                    </label>
-                    <label for="herding" class="control-label">
-                        <input type="checkbox" id="herding" value="herding" name="outdoor[]"> Herding
-                    </label>
-                    <label for="parks" class="control-label">
-                        <input type="checkbox" id="parks" value="parks" name="outdoor[]"> Off-Leash Parks
-                    </label>
-                    <label for="obedience" class="control-label">
-                        <input type="checkbox" id="obedience" value="obedience" name="outdoor[]"> Obedience
-                    </label>
-                </div><!-- /justify content between -->
-            </div><!-- /outdoor interests -->
-            <div class="d-flex justify-content-end m-3"><!-- button -->
-                <button type="submit" id="next" class="btn btn-primary">Next</button>
-            </div><!-- /button -->
-        </form><!-- /form -->
-    </div><!-- card -->
-</div> <!-- /container fluid -->
+                        <repeat group="{{ @indoor }}" key="{{ @keyIndoor }}" value="{{ @valueIndoor }}">
 
-<!-- footer -->
-<include href="views/footer.html">
+                            <label for="{{ @keyIndoor }}" class="control-label">
+                                <input type="checkbox" id="{{ @keyIndoor }}" value="{{ @valueIndoor }}"
+                                       name="indoor[]"
+
+                                <check if="{{ isset(@selectedIndoor) && in_array(@valueIndoor, @selectedIndoor) }}">
+                                    checked
+                                </check>
+
+                                > {{ @valueIndoor }}
+                            </label>
+                        </repeat>
+
+                        <check if="{{ isset(@errors['indoor']) }}">
+                            <label class="text-danger">{{ @errors['indoor'] }}</label>
+                        </check>
+                    </div><!-- /justify content between -->
+                </div><!-- /indoor interests -->
+
+                <div class="m-3"><!-- outdoor interests -->
+                    <p><strong>Outdoor</strong></p>
+                    <div class="d-flex justify-content-between"><!-- justify content between -->
+
+                        <repeat group="{{ @outdoor }}" key="{{ @keyOutdoor }}" value="{{ @valueOutdoor }}">
+
+                            <label for="{{ @keyOutdoor }}" class="control-label">
+                                <input type="checkbox" id="{{ @keyOutdoor }}" value="{{ @valueOutdoor }}"
+                                       name="outdoor[]"
+
+                                <check if="{{ isset(@selectedOutdoor) && in_array(@valueOutdoor, @selectedOutdoor) }}">
+                                    checked
+                                </check>
+
+                                > {{ @valueOutdoor }}
+                            </label>
+                        </repeat>
+
+                        <check if="{{ isset(@errors['outdoor']) }}">
+                            <label class="text-danger">{{ @errors['outdoor'] }}</label>
+                        </check>
+                    </div><!-- /justify content between -->
+                </div><!-- /outdoor interests -->
+                <div class="d-flex justify-content-end m-3"><!-- button -->
+                    <button type="submit" id="next" class="btn btn-primary">Next</button>
+                </div><!-- /button -->
+            </form><!-- /form -->
+        </div><!-- card -->
+    </div> <!-- /container fluid -->
+
+    <!-- footer -->
+    <include href="views/footer.html">
 </body>
 </html>
