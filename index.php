@@ -26,7 +26,9 @@ $f3->set('DEBUG',3);
 // arrays
 $f3->set('genders', array('male', 'female'));
 
-$f3->set('seekings', array('cats', 'dogs'));
+$f3->set('seekingArr', array('cats', 'dogs'));
+
+$f3->set('speciesArr', array('cat', 'dog'));
 
 $f3->set('indoors', array('puzzles' => 'Puzzles', 'mazes' => 'Mazes', 'training' => 'Training',
     'baking' => 'Pet-friendly Baking Class', 'cooking' => 'Pet-friendly Cooking Class', 'dining' => 'Pet-friendly Dining',
@@ -116,10 +118,10 @@ $f3->route('GET|POST /profile', function ($f3) {
         $f3->set('email', $email);
         $f3->set('selectedState', $state);
         $f3->set('seeking', $seeking);
-        $f3->set('size', $size);
+        $f3->set('selectedSize', $size);
         $f3->set('vaccination', $vaccination);
         $f3->set('pName', $pName);
-        $f3->set('species', $species);
+        $f3->set('selectedSpecies', $species);
         $f3->set('biography', $biography);
 
         if(validProfile()) {
@@ -127,11 +129,11 @@ $f3->route('GET|POST /profile', function ($f3) {
            //write data to session
            $_SESSION['email'] = $email;
            $_SESSION['selectedState'] = $state;
-           $_SESSION['seeking'] = $selectedSeeking;
-           $_SESSION['size'] = $size;
+           $_SESSION['seeking'] = $seeking;
+           $_SESSION['selectedSize'] = $size;
            $_SESSION['vaccination'] = $vaccination;
            $_SESSION['pName'] = $pName;
-           $_SESSION['species'] = $species;
+           $_SESSION['selectedSpecies'] = $species;
            $_SESSION['biography'] = $biography;
 
            // reroute

@@ -47,7 +47,11 @@ http://www.klow.greenriverdev.com/328/dating/profile
                             <select id="state" name="state" class="form-control">
                                 <option value="none">-- Select a State --</option>
                                 <repeat group="{{ @states }}" key="{{ @stateKey }}" value="{{ @stateValue }}">
-                                    <option value="{{ @stateKey }}">{{ @stateValue }}</option>
+                                    <option value="{{ @stateKey }}"
+                                    <check if="{{ @stateKey == @selectedState }}">
+                                        selected
+                                    </check>
+                                    >{{ @stateValue }}</option>
                                 </repeat>
                             </select>
                         </label>
@@ -58,12 +62,16 @@ http://www.klow.greenriverdev.com/328/dating/profile
                         <div class="form-row">
                             <label for="seeking"><strong>Seeking</strong>
                                 <div id="seeking" name="seeking">
-                                    <label for="dogs">
-                                        <input type="radio" id="dogs" name="seeking" value="Dogs"> Dogs &emsp;
-                                    </label>
-                                    <label for="cats">
-                                        <input type="radio" id="cats" name="seeking" value="Cats"> Cats
-                                    </label>
+                                    <repeat group="{{ @seekingArr }}" value="{{ @seekingValue }}">
+                                        <label for="{{ @seekingValue }}">
+                                            <input type="radio" id="{{ @seekingValue }}" name="seeking"
+                                                   value="{{ @seekingValue }}"
+                                            <check if="{{ @seeking == @seekingValue }}">
+                                                checked
+                                            </check>
+                                            > {{ ucfirst(@seekingValue) }}
+                                        </label>
+                                    </repeat>
                                 </div>
                             </label>
                         </div>
@@ -73,8 +81,12 @@ http://www.klow.greenriverdev.com/328/dating/profile
                         <label for="size" class="control-label"><strong>Size</strong>
                             <select id="size" name="size" class="form-control">
                                 <option value="none">-- Select a Size --</option>
-                                <repeat group="{{ @sizes }}" key="{{ @key }}" value="{{ @value }}">
-                                    <option value="{{ @key }}">{{ @value }}</option>
+                                <repeat group="{{ @sizes }}" key="{{ @sizeKey }}" value="{{ @sizeValue }}">
+                                    <option value="{{ @sizeKey }}"
+                                    <check if="{{ @sizeKey == @selectedSize }}">
+                                        selected
+                                    </check>
+                                    >{{ @sizeValue }}</option>
                                 </repeat>
                             </select>
                         </label>
@@ -94,7 +106,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
 
                         <!-- pet name -->
                         <label for="pName" class="control-label"><strong>Pet Name</strong></label>
-                        <input type="text" id="pName" name="pName" class="form-control">
+                        <input type="text" id="pName" name="pName" value="{{ @pName }}" class="form-control">
                         <br>
                         <!-- /pet name -->
 
@@ -102,8 +114,13 @@ http://www.klow.greenriverdev.com/328/dating/profile
                         <label for="species" class="control-label"><strong>Species</strong></label>
                         <select id="species" name="species" class="form-control">
                             <option value="none">-- Select a Species --</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
+                            <repeat group="{{ @speciesArr }}" value="{{ @species }}">
+                                <option value="{{ @species }}"
+                                <check if="{{ @species == @selectedSpecies }}">
+                                    selected
+                                </check>
+                                >{{ ucfirst(@species) }}</option>
+                            </repeat>
                         </select>
                         <br>
                         <!-- /species -->
