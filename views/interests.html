@@ -33,16 +33,13 @@ http://www.klow.greenriverdev.com/328/dating/interests
                     <p><strong>Indoor</strong></p>
                     <div class="d-flex justify-content-between"><!-- justify content between -->
 
-                        <repeat group="{{ @indoor }}" key="{{ @keyIndoor }}" value="{{ @valueIndoor }}">
-
+                        <repeat group="{{ @indoors }}" key="{{ @keyIndoor }}" value="{{ @valueIndoor }}">
                             <label for="{{ @keyIndoor }}" class="control-label">
-                                <input type="checkbox" id="{{ @keyIndoor }}" value="{{ @valueIndoor }}"
+                                <input type="checkbox" id="{{ @keyIndoor }}" value="{{ @keyIndoor }}"
                                        name="indoor[]"
-
                                 <check if="{{ isset(@selectedIndoor) && in_array(@valueIndoor, @selectedIndoor) }}">
                                     checked
                                 </check>
-
                                 > {{ @valueIndoor }}
                             </label>
                         </repeat>
@@ -57,16 +54,13 @@ http://www.klow.greenriverdev.com/328/dating/interests
                     <p><strong>Outdoor</strong></p>
                     <div class="d-flex justify-content-between"><!-- justify content between -->
 
-                        <repeat group="{{ @outdoor }}" key="{{ @keyOutdoor }}" value="{{ @valueOutdoor }}">
-
+                        <repeat group="{{ @outdoors }}" key="{{ @keyOutdoor }}" value="{{ @valueOutdoor }}">
                             <label for="{{ @keyOutdoor }}" class="control-label">
-                                <input type="checkbox" id="{{ @keyOutdoor }}" value="{{ @valueOutdoor }}"
+                                <input type="checkbox" id="{{ @keyOutdoor }}" value="{{ @@keyOutdoor }}"
                                        name="outdoor[]"
-
                                 <check if="{{ isset(@selectedOutdoor) && in_array(@valueOutdoor, @selectedOutdoor) }}">
                                     checked
                                 </check>
-
                                 > {{ @valueOutdoor }}
                             </label>
                         </repeat>

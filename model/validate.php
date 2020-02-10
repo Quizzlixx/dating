@@ -57,7 +57,7 @@ function validEmail($email)
 function validIndoor($indoor)
 {
     global $f3;
-    if(empty($outdoor)) {
+    if(empty($indoor)) {
         return true;
     }
     return in_array($indoor, $f3->get('indoor'));
@@ -84,13 +84,13 @@ function validInterests() {
     $isValid = true;
 
     // validate indoor array
-    if (!validIndoor($f3->get('selectedIndoor'))) {
+    if (!validIndoor($f3->get('indoor'))) {
         $isValid = false;
         $f3->set("errors['indoor']", "Please select a valid indoor interest.");
     }
 
     // validate outdoor array
-    if(!validOutdoor($f3->get('selectedOutdoor'))) {
+    if(!validOutdoor($f3->get('indoor'))) {
         $isValid = false;
         $f3->set("errors['outdoor']", "Please select a valid outdoor interest.");
     }
