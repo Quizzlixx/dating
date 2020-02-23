@@ -2,8 +2,8 @@
 
 class PremiumMember extends Member
 {
-    public $_inDoorInterests;
-    public $_outDoorInterests;
+    public $_inDoorInterests = array();
+    public $_outDoorInterests = array();
 
     /**
      * @return mixed
