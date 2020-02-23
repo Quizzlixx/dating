@@ -10,7 +10,12 @@ class Member
     private $_email;
     private $_state;
     private $_seeking;
+    private $_size;
+    private $_vaccination;
+    private $_pName;
+    private $_species;
     private $_bio;
+    private $_isPremium = false;
 
     public function __construct($fName, $lName, $age, $gender, $phone)
     {
@@ -19,6 +24,10 @@ class Member
         $this->_age = $age;
         $this->_gender = $gender;
         $this->_phone = $phone;
+    }
+
+    public function isPremium() {
+        return $this->_isPremium;
     }
 
     /**
