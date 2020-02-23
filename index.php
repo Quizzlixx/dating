@@ -5,6 +5,11 @@
  * Full Stack Software Development
  * http://www.klow.greenriverdev.com/328/dating/
  */
+// the autoload has to load the class you need before you start the session
+// if the session stores objects, you have to have the autoload first
+// requires
+require_once('vendor/autoload.php');
+require_once('model/validate.php');
 
 // start session
 session_start();
@@ -12,10 +17,6 @@ session_start();
 // turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
-// requires
-require_once('vendor/autoload.php');
-require_once('model/validate.php');
 
 // instantiate F3
 $f3 = Base::instance();
