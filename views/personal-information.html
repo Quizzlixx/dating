@@ -97,7 +97,11 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <br>
                         <label><strong>Premium Membership</strong></label>
                         <div class="form-row custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="premium" name="premium">
+                            <input type="checkbox" class="custom-control-input" id="premium" name="premium"
+                            <check if="{{ @premium == on }}">
+                                checked="on"
+                            </check>
+                            >
                             <label class="custom-control-label" for="premium">Sign me up for Preium Membership!</label>
                         </div>
                         <!-- /premium membership -->
