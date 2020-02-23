@@ -6,6 +6,23 @@ class PremiumMember extends Member
     public $_outDoorInterests = array();
 
     /**
+     * PremiumMember constructor.
+     * @param $fName
+     * @param $lName
+     * @param $age
+     * @param $gender
+     * @param $phone
+     * @param array $_inDoorInterests
+     * @param array $_outDoorInterests
+     */
+    public function __construct($fName, $lName, $age, $gender, $phone)
+    {
+        parent::__construct($this->setFName($fName), $this->setLName($lName), $this->setAge($age), $this->setGender($gender),
+            $this->setPhone($phone));
+    }
+
+
+    /**
      * @return mixed
      */
     public function getInDoorInterests()
