@@ -37,7 +37,7 @@ http://www.klow.greenriverdev.com/328/dating/interests
                             <label for="{{ @keyIndoor }}" class="control-label">
                                 <input type="checkbox" id="{{ @keyIndoor }}" value="{{ @keyIndoor }}"
                                        name="indoor[]"
-                                <check if="{{ isset(@selectedIndoor) && in_array(@valueIndoor, @selectedIndoor) }}">
+                                <check if="{{ isset(@person['indoor']) && in_array(@keyIndoor, @person['indoor']) }}">
                                     checked
                                 </check>
                                 > {{ @valueIndoor }}
@@ -56,9 +56,9 @@ http://www.klow.greenriverdev.com/328/dating/interests
 
                         <repeat group="{{ @outdoors }}" key="{{ @keyOutdoor }}" value="{{ @valueOutdoor }}">
                             <label for="{{ @keyOutdoor }}" class="control-label">
-                                <input type="checkbox" id="{{ @keyOutdoor }}" value="{{ @@keyOutdoor }}"
+                                <input type="checkbox" id="{{ @keyOutdoor }}" value="{{ @keyOutdoor }}"
                                        name="outdoor[]"
-                                <check if="{{ isset(@selectedOutdoor) && in_array(@valueOutdoor, @selectedOutdoor) }}">
+                                <check if="{{ isset(@person['outdoor']) && in_array(@keyOutdoor, @person['outdoor']) }}">
                                     checked
                                 </check>
                                 > {{ @valueOutdoor }}
