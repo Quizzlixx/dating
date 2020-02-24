@@ -233,6 +233,3 @@ $f3->route('GET|POST /summary', function () {
 
 // run f3
 $f3->run();
-
-session_destroy();
-$_SESSION = array();
