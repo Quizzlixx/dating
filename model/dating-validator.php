@@ -152,14 +152,11 @@ class DatingValidator
      */
     public function validIndoor($indoor, $f3)
     {
-        echo "<br>Indoor:";
-        var_dump($f3->get('indoors'));
-        echo "<br>Selected: ";
-        var_dump($indoor);
+//        echo "<br>Indoor:";
+//        var_dump($f3->get('indoors'));
+//        echo "<br>Selected: ";
+//        var_dump($indoor);
 
-//        if (!array_key_exists($indoor, $f3->get('indoors'))) {
-//            $this->_errors['indoor'] = "Invalid selection.";
-//        }
         foreach ($indoor as $activity) {
             if (!array_key_exists($activity, $f3->get('indoors'))) {
                 $this->_errors['outdoor'] = "Invalid selection.";
@@ -176,10 +173,10 @@ class DatingValidator
      */
     public function validOutdoor($outdoor, $f3)
     {
-        echo "<br>Outdoor:";
-        var_dump($f3->get('outdoors'));
-        echo "<br>Selected: ";
-        var_dump($outdoor);
+//        echo "<br>Outdoor:";
+//        var_dump($f3->get('outdoors'));
+//        echo "<br>Selected: ";
+//        var_dump($outdoor);
 
         foreach ($outdoor as $activity) {
             if (!array_key_exists($activity, $f3->get('outdoors'))) {

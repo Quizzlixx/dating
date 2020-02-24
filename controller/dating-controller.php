@@ -32,7 +32,7 @@ class DatingController
 
     public function personalInformation($f3)
     {
-        var_dump($_SESSION['member']);
+//        var_dump($_SESSION['member']);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -76,7 +76,7 @@ class DatingController
 
     public function profile($f3)
     {
-        var_dump($_SESSION['member']);
+//        var_dump($_SESSION['member']);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -127,7 +127,7 @@ class DatingController
 
     public function interests($f3)
     {
-        var_dump($_SESSION['member']);
+//        var_dump($_SESSION['member']);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -161,7 +161,7 @@ class DatingController
 
     public function summary()
     {
-        var_dump($_SESSION['member']);
+//        var_dump($_SESSION['member']);
 
         $view = new Template();
         echo $view->render('views/summary.html');
