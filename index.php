@@ -5,27 +5,21 @@
  * Full Stack Software Development
  * http://www.klow.greenriverdev.com/328/dating/
  */
-
-// requires
-require_once('vendor/autoload.php');
-require_once('model/validate.php');
-
-$_SESSION = array();
-
-// start session
-session_start();
-
 // turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+// requires
+require_once('vendor/autoload.php');
+
+// start session
+session_start();
+
 // instantiate F3
 $f3 = Base::instance();
-
-$controller = new DatingController;
-
-// f3 error reporting on
 $f3->set('DEBUG', 3);
+
+$controller = new DatingController($f3);
 
 // arrays
 $f3->set('genders', array('male', 'female'));
