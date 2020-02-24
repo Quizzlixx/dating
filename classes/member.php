@@ -17,15 +17,9 @@ class Member
     private $_bio;
     private $_isPremium = false;
 
-    public function __construct($fName, $lName, $age, $gender, $phone)
-    {
-        $this->_fName = $fName;
-        $this->_lName = $lName;
-        $this->_age = $age;
-        $this->_gender = $gender;
-        $this->_phone = $phone;
-    }
-
+    /**
+     * @return bool
+     */
     public function isPremium() {
         return $this->_isPremium;
     }
@@ -173,5 +167,71 @@ class Member
     {
         $this->_bio = $bio;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSize()
+    {
+        return $this->_size;
+    }
+
+    /**
+     * @param mixed $size
+     */
+    public function setSize($size)
+    {
+        $this->_size = $size;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVaccination()
+    {
+        return $this->_vaccination;
+    }
+
+    /**
+     * @param mixed $vaccination
+     */
+    public function setVaccination($vaccination)
+    {
+        $this->_vaccination = $vaccination;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPName()
+    {
+        return $this->_pName;
+    }
+
+    /**
+     * @param mixed $pName
+     */
+    public function setPName($pName)
+    {
+        $this->_pName = $pName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpecies()
+    {
+        return $this->_species;
+    }
+
+    /**
+     * @param mixed $species
+     */
+    public function setSpecies($species)
+    {
+        $this->_species = $species;
+    }
+
+
 
 }
