@@ -1,15 +1,15 @@
 {
-  "name:" : "klow/328/dating",
+  "name": "klow.greenriverdev.com/328/dating",
   "authors": [
     {
       "name": "Kerrie Low",
-      "email": "klow4@mail.greenriver.edu"
+      "email": "klow4@greenriver.edu"
     }
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master"
   },
   "autoload": {
-    "classmap": ["classes/"]
+    "classmap": ["model/", "controller/", "classes/"]
   }
 }
