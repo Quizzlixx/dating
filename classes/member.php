@@ -17,9 +17,6 @@ class Member
     private $_bio;
     private $_isPremium = false;
 
-    /**
-     * @return bool
-     */
     public function isPremium() {
         return $this->_isPremium;
     }
