@@ -8,6 +8,7 @@
 // requires
 require_once('vendor/autoload.php');
 require_once('model/validate.php');
+
 // start session
 session_start();
 
@@ -96,22 +97,19 @@ $f3->route('GET|POST /personal-information', function ($f3) {
             // Check for premium membership and create new object
             if ($premium == "on") {
                 $member = new PremiumMember();
+                $_SESSION['member'] = $member;
+                $f3->set('member', $member);
             } else {
                 $member = new Member();
+                $_SESSION['member'] = $member;
+                $f3->set('member', $member);
             }
-
-            // add member to session array
-            $_SESSION['member'] = $member;
-
             // set object properties
-            $member->setFName($fName);
-            $member->setLName($lName);
-            $member->setAge($age);
-            $member->setGender($gender);
-            $member->setPhone($phone);
-
-            // add member to hive
-            $f3->set('member', $member);
+            $_SESSION['member']->setFName($fName);
+            $_SESSION['member']->setLName($lName);
+            $_SESSION['member']->setAge($age);
+            $_SESSION['member']->setGender($gender);
+            $_SESSION['member']->setPhone($phone);
 
             // reroute
             $f3->reroute('/profile');
@@ -235,3 +233,6 @@ $f3->route('GET|POST /summary', function () {
 
 // run f3
 $f3->run();
+
+session_destroy();
+$_SESSION = array();
