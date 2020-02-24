@@ -17,6 +17,27 @@ class Member
     private $_bio;
     private $_isPremium = false;
 
+    /**
+     * Member constructor.
+     * @param $_fName
+     * @param $_lName
+     * @param $_age
+     * @param $_gender
+     * @param $_phone
+     */
+    public function __construct($_fName, $_lName, $_age, $_gender, $_phone)
+    {
+        $this->_fName = $_fName;
+        $this->_lName = $_lName;
+        $this->_age = $_age;
+        $this->_gender = $_gender;
+        $this->_phone = $_phone;
+    }
+
+
+    /**
+     * @return bool
+     */
     public function isPremium() {
         return $this->_isPremium;
     }

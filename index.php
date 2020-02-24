@@ -10,6 +10,8 @@
 require_once('vendor/autoload.php');
 require_once('model/validate.php');
 
+$_SESSION = array();
+
 // start session
 session_start();
 
@@ -97,20 +99,13 @@ $f3->route('GET|POST /personal-information', function ($f3) {
 
             // Check for premium membership and create new object
             if ($premium == "on") {
-                $member = new PremiumMember();
+                $member = new PremiumMember($fName, $lName, $age, $gender, $phone);
             } else {
-                $member = new Member();
+                $member = new Member($fName, $lName, $age, $gender, $phone);
             }
 
             // save object to session variable
             $_SESSION['member'] = $member;
-
-            // set object properties
-            $_SESSION['member']->setFName($fName);
-            $_SESSION['member']->setLName($lName);
-            $_SESSION['member']->setAge($age);
-            $_SESSION['member']->setGender($gender);
-            $_SESSION['member']->setPhone($phone);
 
             // reroute
             $f3->reroute('/profile');
