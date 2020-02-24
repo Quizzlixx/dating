@@ -36,7 +36,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- first name -->
                         <div class="form-row">
                             <label for="fName" class="control-label"><strong>First Name</strong></label>
-                            <input type="text" id="fName" name="fName" value="{{ @fName }}" class="form-control">
+                            <input type="text" id="fName" name="fName" value="{{ ucfirst(@fName) }}" class="form-control">
                             <check if="{{ isset(@errors['fName']) }}">
                                 <label class="text-danger">{{ @errors['fName'] }}</label>
                             </check>
@@ -48,7 +48,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- last name -->
                         <div class="form-row">
                             <label for="lName" class="control-label"><strong>Last Name</strong></label>
-                            <input type="text" id="lName" name="lName" value="{{ @lName }}" class="form-control">
+                            <input type="text" id="lName" name="lName" value="{{ ucfirst(@lName) }}" class="form-control">
                             <check if="{{ isset(@errors['lName']) }}">
                                 <label class="text-danger">{{ @errors['lName'] }}</label>
                             </check>
