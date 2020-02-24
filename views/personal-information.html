@@ -36,7 +36,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- first name -->
                         <div class="form-row">
                             <label for="fName" class="control-label"><strong>First Name</strong></label>
-                            <input type="text" id="fName" name="fName" value="{{ ucfirst(@fName) }}" class="form-control">
+                            <input type="text" id="fName" name="fName" value="{{ ucfirst(@person['fName']) }}" class="form-control">
                             <check if="{{ isset(@errors['fName']) }}">
                                 <label class="text-danger">{{ @errors['fName'] }}</label>
                             </check>
@@ -48,7 +48,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- last name -->
                         <div class="form-row">
                             <label for="lName" class="control-label"><strong>Last Name</strong></label>
-                            <input type="text" id="lName" name="lName" value="{{ ucfirst(@lName) }}" class="form-control">
+                            <input type="text" id="lName" name="lName" value="{{ ucfirst(@person['lName']) }}" class="form-control">
                             <check if="{{ isset(@errors['lName']) }}">
                                 <label class="text-danger">{{ @errors['lName'] }}</label>
                             </check>
@@ -59,7 +59,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- age -->
                         <div class="form-row">
                             <label for="age" class="control-label"><strong>Age</strong></label>
-                            <input type="text" id="age" name="age" value="{{ @age }}" class="form-control">
+                            <input type="text" id="age" name="age" value="{{ @person['age'] }}" class="form-control">
                             <check if="{{ isset(@errors['age']) }}">
                                 <label class="text-danger">{{ @errors['age'] }}</label>
                             </check>
@@ -85,7 +85,7 @@ http://www.klow.greenriverdev.com/328/dating/personal-information
                         <!-- phone number -->
                         <div class="form-row">
                             <label for="phone" class="control-label"><strong>Phone number</strong></label>
-                            <input type="tel" id="phone" name="phone" value="{{ @phone }}" pattern="{0-9}{3}-{0-9}{3}-{0-9}{4}"
+                            <input type="tel" id="phone" name="phone" value="{{ @person['phone'] }}" pattern="{0-9}{3}-{0-9}{3}-{0-9}{4}"
                                    class="form-control">
                             <check if="{{ isset(@errors['phone']) }}">
                                 <label class="text-danger">{{ @errors['phone'] }}</label>
