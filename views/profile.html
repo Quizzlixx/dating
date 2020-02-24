@@ -35,7 +35,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
 
                         <!-- email -->
                         <label for="email" class="control-label"><strong>Email</strong></label>
-                        <input type="text" id="email" name="email" value="{{ @email }}" class="form-control">
+                        <input type="text" id="email" name="email" value="{{ @person['email'] }}" class="form-control">
                         <check if="{{ isset(@errors['email']) }}">
                             <label class="text-danger">{{ @errors['email'] }}</label>
                         </check>
@@ -48,7 +48,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
                                 <option value="none">-- Select a State --</option>
                                 <repeat group="{{ @states }}" key="{{ @stateKey }}" value="{{ @stateValue }}">
                                     <option value="{{ @stateKey }}"
-                                    <check if="{{ @stateKey == @selectedState }}">
+                                    <check if="{{ @stateKey == @person['state'] }}">
                                         selected
                                     </check>
                                     >{{ @stateValue }}</option>
@@ -83,7 +83,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
                                 <option value="none">-- Select a Size --</option>
                                 <repeat group="{{ @sizes }}" key="{{ @sizeKey }}" value="{{ @sizeValue }}">
                                     <option value="{{ @sizeKey }}"
-                                    <check if="{{ @sizeKey == @selectedSize }}">
+                                    <check if="{{ @sizeKey == @person['size'] }}">
                                         selected
                                     </check>
                                     >{{ @sizeValue }}</option>
@@ -96,7 +96,11 @@ http://www.klow.greenriverdev.com/328/dating/profile
                         <!-- vaccination -->
                         <p><strong>Note:</strong> All pets must be up to date for all vaccinations.</p>
                         <label for="vaccination" class="control-label">
-                            <input type="checkbox" id="vaccination" name="vaccination"> Verify Vaccination
+                            <input type="checkbox" id="vaccination" name="vaccination"
+                            <check if="{{ @person['vaccination'] == on }}">
+                                checked
+                            </check>
+                            > Verify Vaccination
                         </label>
                         <!-- /vaccination -->
 
@@ -106,7 +110,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
 
                         <!-- pet name -->
                         <label for="pName" class="control-label"><strong>Pet Name</strong></label>
-                        <input type="text" id="pName" name="pName" value="{{ ucfirst(@pName) }}" class="form-control">
+                        <input type="text" id="pName" name="pName" value="{{ ucfirst(@person['pName']) }}" class="form-control">
                         <br>
                         <!-- /pet name -->
 
@@ -116,7 +120,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
                             <option value="none">-- Select a Species --</option>
                             <repeat group="{{ @speciesArr }}" value="{{ @species }}">
                                 <option value="{{ @species }}"
-                                <check if="{{ @species == @selectedSpecies }}">
+                                <check if="{{ @species == @person['species'] }}">
                                     selected
                                 </check>
                                 >{{ ucfirst(@species) }}</option>
@@ -128,7 +132,7 @@ http://www.klow.greenriverdev.com/328/dating/profile
                         <!-- biography -->
                         <label for="biography" class="control-label"><strong>Pet Bio</strong>
                             <textarea type="text" id="biography" name="biography" rows="6" cols="120"
-                                class="form-control">{{ @biography }}</textarea>
+                                class="form-control">{{ @person['biography'] }}</textarea>
                         </label>
                         <!-- /biography -->
 
