@@ -32,11 +32,12 @@ class DatingController
 
     public function personalInformation($f3)
     {
+        var_dump($_SESSION['member']);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // instantiate a validator
-            $this->_val = new DatingValidator();
+            $this->_val = new DatingValidator($f3);
 
             if ($this->_val->validPersonalInformation()) {
                 // get form values
@@ -75,11 +76,12 @@ class DatingController
 
     public function profile($f3)
     {
+        var_dump($_SESSION['member']);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // instantiate a validator
-            $this->_val = new DatingValidator();
+            $this->_val = new DatingValidator($f3);
 
             if ($this->_val->validProfile()) {
                 // get form values
@@ -108,6 +110,7 @@ class DatingController
                 } else {
                     $f3->reroute('/summary');
                 }
+
             } else {
                 // Data was not valid
                 // Get errors from validator and add to f3 hive
@@ -124,33 +127,32 @@ class DatingController
 
     public function interests($f3)
     {
-//        var_dump($_POST);
-//        echo "<br>";
-//        var_dump($_SESSION);
+        var_dump($_SESSION['member']);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $selectedIndoor = !empty($_POST['indoor']) ? $_POST['indoor'] : array();
-            $selectedOutdoor = !empty($_POST['outdoor']) ? $_POST['outdoor'] : array();
+            // instantiate a validator
+            $this->_val = new DatingValidator($f3);
 
-            // add data to the hive
-            $f3->set('selectedIndoor', $selectedIndoor);
-            $f3->set('selectedOutdoor', $selectedOutdoor);
-
-            // validate arrays
-            if (validInterests()) {
-                // write data to session
-                $_SESSION['indoor'] = $selectedIndoor;
-                $_SESSION['outdoor'] = $selectedOutdoor;
+            if ($this->_val->validInterests()) {
+                // get form values
+                $indoor = !empty($_POST['indoor']) ? $_POST['indoor'] : array();
+                $outdoor = !empty($_POST['outdoor']) ? $_POST['outdoor'] : array();
 
                 // set interests to session variable
-                $_SESSION['member']->setInDoorInterests($selectedIndoor);
-                $_SESSION['member']->setOutDoorInterests($selectedOutdoor);
+                $_SESSION['member']->setInDoorInterests($indoor);
+                $_SESSION['member']->setOutDoorInterests($outdoor);
 
                 // reroute to summary
                 $f3->reroute('/summary');
-            }
+            } else {
+                // Data was not valid
+                // Get errors from validator and add to f3 hive
+                $this->_f3->set('errors', $this->_val->getErrors());
 
+                // add POST array data to f3 hive for sticky form
+                $this->_f3->set('person', $_POST);
+            }
         }
 
         $view = new Template();
@@ -159,9 +161,7 @@ class DatingController
 
     public function summary()
     {
-//        var_dump($_POST);
-//        echo "<br>";
-//        var_dump($_SESSION);
+        var_dump($_SESSION['member']);
 
         $view = new Template();
         echo $view->render('views/summary.html');

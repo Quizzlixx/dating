@@ -6,15 +6,21 @@
 class DatingValidator
 {
     /**
+     * @var
+     */
+    private $_f3;
+    /**
      * @var array
      */
     private $_errors;
 
     /**
      * DatingValidator constructor.
+     * @param $f3
      */
-    public function __construct()
+    public function __construct($f3)
     {
+        $this->_f3 = $f3;
         $this->_errors = array();
     }
 
@@ -38,39 +44,33 @@ class DatingValidator
         $this->validAge($_POST['age']);
         $this->validPhone($_POST['phone']);
 
-        // if the $_errors array is empty. then we have valid data
+        // if the $_errors array is empty, then we have valid data
         return empty($this->_errors);
     }
 
     /**
+     * Checks if the personal information form is valid
+     *
      * @return bool
      */
     public function validProfile()
     {
         $this->validEmail($_POST['email']);
 
+        // if the $_errors array is empty, then we have valid data
         return empty($this->_errors);
     }
 
+    /**
+     * checks if the interest arrays are valid
+     */
     public function validInterests()
     {
+        $this->validIndoor($_POST['indoor'], $this->_f3);
+        $this->validOutdoor($_POST['outdoor'], $this->_f3);
 
-        global $f3;
-        $isValid = true;
-
-        // validate indoor array
-        if (!validIndoor($f3->get('indoor'))) {
-            $isValid = false;
-            $f3->set("errors['indoor']", "Please select a valid indoor interest.");
-        }
-
-        // validate outdoor array
-        if (!validOutdoor($f3->get('indoor'))) {
-            $isValid = false;
-            $f3->set("errors['outdoor']", "Please select a valid outdoor interest.");
-        }
-
-        return $isValid;
+        // if the $_errors array is empty, then we have valid data
+        return empty($this->_errors);
     }
 
     /**
@@ -122,8 +122,6 @@ class DatingValidator
     }
 
     /**
-     * Return true if phone number matches pattern
-     *
      * @param $number
      * @return void
      */
@@ -135,8 +133,6 @@ class DatingValidator
     }
 
     /**
-     * returns true if email format is valid
-     *
      * @param $email
      * @return mixed
      */
@@ -151,12 +147,23 @@ class DatingValidator
      * Checks to see if the selected indoor array is valid
      *
      * @param $indoor
+     * @param $f3
      * @return void
      */
-    public function validIndoor($indoor)
+    public function validIndoor($indoor, $f3)
     {
-        if (!in_array($indoor, $f3->get('indoor'))) {
-            $this->_errors['indoor'] = "Invalid selection.";
+        echo "<br>Indoor:";
+        var_dump($f3->get('indoors'));
+        echo "<br>Selected: ";
+        var_dump($indoor);
+
+//        if (!array_key_exists($indoor, $f3->get('indoors'))) {
+//            $this->_errors['indoor'] = "Invalid selection.";
+//        }
+        foreach ($indoor as $activity) {
+            if (!array_key_exists($activity, $f3->get('indoors'))) {
+                $this->_errors['outdoor'] = "Invalid selection.";
+            }
         }
     }
 
@@ -164,12 +171,20 @@ class DatingValidator
      * Checks to see if the selected outdoor array is valid
      *
      * @param $outdoor
+     * @param $f3
      * @return void
      */
-    public function validOutdoor($outdoor)
+    public function validOutdoor($outdoor, $f3)
     {
-        if (!in_array($outdoor, $f3->get('outdoor'))) {
-            $this->_errors['outdoor'] = "Invalid selection.";
+        echo "<br>Outdoor:";
+        var_dump($f3->get('outdoors'));
+        echo "<br>Selected: ";
+        var_dump($outdoor);
+
+        foreach ($outdoor as $activity) {
+            if (!array_key_exists($activity, $f3->get('outdoors'))) {
+                $this->_errors['outdoor'] = "Invalid selection.";
+            }
         }
     }
 }

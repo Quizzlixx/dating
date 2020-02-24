@@ -34,8 +34,8 @@ http://www.klow.greenriverdev.com/328/dating/summary
                         <li class="list-group-item">Pet: {{ ucfirst(@SESSION.member->getPName()) }}</li>
                         <li class="list-group-item">Seeking: {{ ucfirst(@SESSION.member->getSeeking()) }}</li>
                         <check if="{{ @SESSION.member->isPremium() }}">
-                            <li class="list-group-item">Interests: {{ implode(", ", ucfirst(@SESSION.member->getInDoorInterests())) }}
-                                {{ implode(", ", ucfirst(@SESSION.member->getOutDoorInterests())) }}</li>
+                            <li class="list-group-item">Interests: {{ implode(", ", @SESSION.member->getInDoorInterests()) }}
+                                {{ implode(", ", @SESSION.member->getOutDoorInterests()) }}</li>
                         </check>
                     </ul><!-- /list -->
                 </div><!-- /inner card -->
