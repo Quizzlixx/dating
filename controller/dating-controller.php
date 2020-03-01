@@ -162,11 +162,19 @@ class DatingController
     public function summary()
     {
 //        var_dump($_SESSION['member']);
+        // insert member into db
+        $GLOBALS['db']->insertMember($_SESSION['member']);
 
         $view = new Template();
         echo $view->render('views/summary.html');
 
         session_destroy();
         $_SESSION = array();
+    }
+
+    public function admin()
+    {
+        $view = new Template();
+        echo $view->render('views/admin.html');
     }
 }

@@ -17,8 +17,12 @@ session_start();
 
 // instantiate F3
 $f3 = Base::instance();
+
+// f3 debugging ON
 $f3->set('DEBUG', 3);
 
+// instantiate controller objects
+$db = new DatingDatabase();
 $controller = new DatingController($f3);
 
 // arrays
@@ -33,7 +37,7 @@ $f3->set('indoors', array('puzzles' => 'Puzzles', 'mazes' => 'Mazes', 'training'
     'dining' => 'Pet-friendly Dining', 'play' => 'Play Dates'));
 
 $f3->set('outdoors', array('hiking' => 'Hiking', 'biking' => 'Biking', 'swimming' => 'Swimming',
-    'walking' => 'Walking', 'fetch' => 'Fetch', 'running' => 'Running', 'agility' => 'Agility',
+    'walking' => 'Walking', 'running' => 'Running', 'agility' => 'Agility',
     'herding' => 'Herding', 'parks' => 'Off-Leash Parks', 'obedience' => 'Obedience'));
 
 $f3->set('sizes', array('teacup' => 'Teacup (4 pounds or less)', 'toy' => 'Toy (5 - 12 pounds)',
@@ -76,6 +80,11 @@ $f3->route('GET|POST /interests', function ($f3) {
 // summary route
 $f3->route('GET|POST /summary', function () {
     $GLOBALS['controller']->summary();
+});
+
+// admin route
+$f3->route('GET /admin', function () {
+    $GLOBALS['controller']->admin();
 });
 
 // run f3
