@@ -1,6 +1,7 @@
 <?php
 // requires
-require_once('/home/klowgree/connect.php');
+require_once('/home/klowgree/config-dating.php');
+//require_once('config-dating.php');
 
 /* Database Creation
 CREATE TABLE `member` (
@@ -44,7 +45,7 @@ class DatingDatabase
         try {
             // create a new PDO connection
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-            echo "Connected!";
+//            echo "Connected!";
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -82,50 +83,70 @@ function insertMember($member)
     $statement->bindParam(':species', $member->getSpecies());
     $statement->bindParam(':bio', $member->getBio());
     $statement->bindParam(':premium', $member->getPremium());
+    // if picture was enabled
+//    $statement->bindParam(':picture', $member->getPicture());
 
     // execute statement
     $statement->execute();
 
-    // return results
-    #insertion has no result
+    // get last insert id
+    $id = $this->_dbh->lastInsertId();
+
 }
 
 function getMembers()
 {
     // define query
+    $sql = "SELECT * FROM `member`
+            ORDER BY lname, fname";
 
     // prepare statement
-
+    $statement = $this->_dbh->prepare($sql);
     // bind parameters
+    # no params to bind
 
     // execute
+    $statement->execute();
 
     // return results
-
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getMember($member_id)
 {
     // define query
+    $sql = "SELECT * FROM `member`
+            WHERE member_id = :id";
 
     // prepare statement
+    $statement = $this->_dbh->prepare($sql);
 
     // bind parameters
+    $statement->bindParam(':id', $member_id);
 
     // execute
+    $statement->execute();
 
     // return results
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getInterests($member_id)
 {
     // define query
+    $sql = "SELECT interest.interest
+            FROM interest, member-interest, member
+            WHERE interest.interest_id = member-interest.interest_id AND member.member_id = member-interest.member_id";
 
     // prepare statement
+    $statement = $this->_dbh->prepare($sql);
 
     // bind parameters
+    $statement->bindParams(':id', $member_id);
 
     // execute
+    $statement->execute();
 
     // return results
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
