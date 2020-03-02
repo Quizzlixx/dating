@@ -87,5 +87,10 @@ $f3->route('GET /admin', function () {
     $GLOBALS['controller']->admin();
 });
 
+// details route
+$f3->route('GET|POST /detail', function () {
+    $GLOBALS['controller']->detail();
+});
+
 // run f3
 $f3->run();

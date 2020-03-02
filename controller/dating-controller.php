@@ -161,7 +161,8 @@ class DatingController
 
     public function summary()
     {
-//        var_dump($_SESSION['member']);
+        var_dump($_SESSION['member']);
+
         // insert member into db
         $GLOBALS['db']->insertMember($_SESSION['member']);
 
